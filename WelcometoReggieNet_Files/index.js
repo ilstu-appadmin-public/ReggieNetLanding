@@ -20,10 +20,8 @@ else {}
 //Pull StatusPage API//
 function setupStatusPage() {
 	var sp = new StatusPage.page({
-		page: 'lv92pqt38dpy' //Production environment//
-		//page: 'n69cch6pwt3v' //Test environment through StatusPage//
+		page: 'lv92pqt38dpy'
 	});
-	//sp.host_with_port_and_protocol = 'https://ilstu-prod.apigee.net/statuspage-test'; //Test environment through Apigee//
 	var printIncidentSummary = function (result) {
 		console.log("Incident summary object: ", result);
 		if (result.error != null) {
@@ -59,7 +57,7 @@ function setupStatusPage() {
 							+ '</a><span class="visuallyhidden">Major Outage</span><span class="major_outage"></span></span>'; 
 						}
 						//Show LDAP login and hide CentralLogin if incident status is not resolved AND Central Login is in the title AND the item status is not operational//
-						if (item.name.indexOf(switchSystem) != -1 && i.name.toUpperCase().includes("CENTRAL LOGIN") && item.status != "operational") {
+						if (i.name.toUpperCase().includes("CENTRAL LOGIN") && item.status != "operational") {
 							document.getElementById("ldap-login").style.display = "block"; document.getElementById("central-login").style.display = "none";
 						}
 					})
@@ -127,6 +125,5 @@ window.addEventListener('load', function () {
 
 //on click of copyright button, show internal log in//
 function showLDAPlogin() {
-	document.getElementById("central-login").style.display = "block";
 	document.getElementById("ldap-login").style.display = "block";
 }
